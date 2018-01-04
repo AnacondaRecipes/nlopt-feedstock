@@ -17,8 +17,12 @@ build:
 
 requirements:
   build:
-    - toolchain
-    - cmake
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - autoconf
+    - automake
+    - libtool
+    - cmake         # [win]
     - swig
     - python
     - numpy 1.8.*   # [not (win and (py35 or py36))]
