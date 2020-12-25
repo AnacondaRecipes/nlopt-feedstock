@@ -1,4 +1,4 @@
-{% set version = "2.4.2" %}
+{% set version = "2.7.0" %}
 
 package:
   name: nlopt
@@ -7,7 +7,7 @@ package:
 source:
   fn: nlopt-{{ version }}.tar.gz
   url: http://ab-initio.mit.edu/nlopt/nlopt-{{ version }}.tar.gz
-  md5: d0b8f139a4acf29b76dbae69ade8ac54
+  md5: a1b03a470e7db2bf3fc3ebcbbbf04885
 
 build:
   number: 2
