@@ -15,6 +15,8 @@ build:
   skip: True  # [python_impl == 'pypy']
   run_exports:
     - {{ pin_subpackage('nlopt', max_pin='x.x') }}
+  missing_dso_whitelist:
+    - "$RPATH/ld64.so.1"  # [s390x]
 
 requirements:
   build:
@@ -23,6 +25,8 @@ requirements:
     - cmake
     - make  # [unix]
     - swig
+    - m2-patch  # [win]
+    - patch     # [not win]
   host:
     - python
     - numpy
