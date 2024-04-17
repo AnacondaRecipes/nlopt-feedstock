@@ -36,8 +36,8 @@ requirements:
     - {{ pin_compatible('numpy') }}  # [not win]
 
 test:
-  imports:
-    - nlopt
+  imports:        # [not win]
+    - nlopt       # [not win]
   commands:
     - test -f $PREFIX/include/nlopt.h                         # [unix]
     - test -f $PREFIX/include/nlopt.hpp                       # [unix]
