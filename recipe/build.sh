@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ "$(uname)" = "Darwin" ]; then
-  #export LDFLAGS="-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib ${LDFLAGS}"
+  # osx uses a temp directory which messes up with cmake finding libraries.
   cd "${SRC_DIR}" || exit
 fi
 
@@ -10,7 +10,6 @@ cmake \
   -DCMAKE_PREFIX_PATH=${PREFIX} \
   -DCMAKE_INSTALL_PREFIX=${PREFIX} \
   -DCMAKE_INSTALL_LIBDIR=lib \
-  -DPython_EXECUTABLE="${PYTHON}" \
   -DNLOPT_GUILE=OFF -DNLOPT_MATLAB=OFF -DNLOPT_OCTAVE=OFF \
   ..
 

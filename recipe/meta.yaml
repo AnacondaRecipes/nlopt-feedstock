@@ -1,18 +1,18 @@
+{% set name = "nlopt" %}
 {% set version = "2.7.1" %}
 
 package:
-  name: nlopt
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://github.com/stevengj/nlopt/archive/v{{ version }}.tar.gz
+  url: https://github.com/stevengj/{{ name }}/archive/v{{ version }}.tar.gz
   sha256: db88232fa5cef0ff6e39943fc63ab6074208831dc0031cf1545f6ecd31ae2a1a
   patches:
     - pep3149.patch
 
 build:
   number: 0
-  skip: True  # [python_impl == 'pypy']
   run_exports:
     - {{ pin_subpackage('nlopt', max_pin='x.x') }}
   missing_dso_whitelist:
@@ -23,7 +23,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake
-    - make  # [unix]
+    - make      # [unix]
     - swig
     - m2-patch  # [win]
     - patch     # [not win]
@@ -37,6 +37,18 @@ requirements:
 test:
   imports:
     - nlopt
+  commands:
+    - test -f $PREFIX/include/nlopt.h                         # [unix]
+    - test -f $PREFIX/include/nlopt.hpp                       # [unix]
+    - test -f $PREFIX/lib/pkgconfig/nlopt.pc                  # [unix]
+    - test -f $PREFIX/lib/libnlopt.so                         # [linux]
+    - test -f $PREFIX/lib/libnlopt.0.11.1.dylib              # [osx]
+    - test -f $PREFIX/lib/libnlopt.0.dylib                    # [osx]
+    - test -f $PREFIX/lib/libnlopt.dylib                      # [osx]
+    - if not exist %PREFIX%/Library/include/nlopt.h exit 1    # [win]
+    - if not exist %PREFIX%/Library/include/nlopt.hpp exit 1  # [win]
+    - if not exist %PREFIX%/Library/lib/nlopt.lib exit 1      # [win]
+    - if not exist %PREFIX%/Library/bin/nlopt.dll exit 1      # [win]
 
 about:
   home: https://nlopt.readthedocs.io
@@ -46,6 +58,10 @@ about:
   license_family: Other
   license_file: COPYING
   summary: nonlinear optimization library
+  description: |
+    NLopt is a free/open-source library for nonlinear optimization,
+    providing a common interface for a number of different free optimization routines
+    available online as well as original implementations of various other algorithms.
 
 extra:
   recipe-maintainers:
