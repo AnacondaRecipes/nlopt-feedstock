@@ -4,10 +4,11 @@ set -euo pipefail
 
 if [ "$(uname)" = "Darwin" ]; then
   # osx uses a temp directory which messes up with cmake finding libraries.
-  cd "${SRC_DIR}" || exit
+  cd "${SRC_DIR}"
 fi
 
-mkdir build && cd build || exit
+mkdir build
+cd build
 
 # nlopt is used by r-nloptr so a Python interface isn't needed on win64.
 # Every supported programming language can have its interface of nlopt
