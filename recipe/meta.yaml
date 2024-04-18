@@ -27,17 +27,8 @@ requirements:
     - swig
     - m2-patch  # [win]
     - patch     # [not win]
-  # nlopt is used by r-nloptr so a Python interface isn't needed on win64
-  host:           # [not win]
-    - python      # [not win]
-    - numpy       # [not win]
-  run:            # [not win]
-    - python      # [not win]
-    - {{ pin_compatible('numpy') }}  # [not win]
 
 test:
-  imports:        # [not win]
-    - nlopt       # [not win]
   commands:
     - test -f $PREFIX/include/nlopt.h                         # [unix]
     - test -f $PREFIX/include/nlopt.hpp                       # [unix]
@@ -57,9 +48,17 @@ about:
   home: https://nlopt.readthedocs.io
   doc_url: https://nlopt.readthedocs.io
   dev_url: https://github.com/stevengj/nlopt/
-  license: LGPL-2.1-or-later AND MIT
+  license: LGPL-2.1-or-later AND MIT AND BSD-3-Clause
   license_family: Other
-  license_file: COPYING
+  license_file:
+    - COPYING
+    - src/algs/cobyla/COPYRIGHT
+    - src/algs/direct/COPYING
+    - src/algs/esch/COPYRIGHT
+    - src/algs/luksan/COPYRIGHT
+    - src/algs/newuoa/COPYRIGHT
+    - src/algs/slsqp/COPYRIGHT
+    - src/algs/stogo/COPYRIGHT
   summary: nonlinear optimization library
   description: |
     NLopt is a free/open-source library for nonlinear optimization,
