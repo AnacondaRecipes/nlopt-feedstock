@@ -14,6 +14,7 @@ cmake -LAH -G"NMake Makefiles"                     ^
   -DCMAKE_PREFIX_PATH="%LIBRARY_PREFIX%"           ^
   -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%"        ^
   -DNLOPT_PYTHON=OFF ^
+  -DNLOPT_SWIG=OFF ^
   -DNLOPT_GUILE=OFF ^
   -DNLOPT_MATLAB=OFF ^
   -DNLOPT_OCTAVE=OFF ^
