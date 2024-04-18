@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipeline
+set -euo pipefail
 
 if [ "$(uname)" = "Darwin" ]; then
   # osx uses a temp directory which messes up with cmake finding libraries.
